@@ -14,7 +14,7 @@
     
     this._name = this.__ko.observable(name);
     this._room = this.__ko.observable(room);
-    this._subj = this.__ko.observable("Task to estimate");
+    this._subj = this.__ko.observable("");
     this._subj.subscribe(function(nv){
       that._vote(null);
       that.update.call(that);
@@ -33,7 +33,7 @@
           return false;
         }
       }
-      return true;
+      return people.length > 1 ? true : false;
     }, this);
     this._voteComplete.subscribe(function (nv) {
       if (nv) {
@@ -145,9 +145,29 @@
 
     client.on('reset', function(){
       $('.card').removeClass('selected');
+      $('#average').html('');
+      $('#lowest').html('');
+      $('#highest').html('');
     });
 
     client.on('reveal', function(){
+      var total = 0;
+      var lowest = 999;
+      var highest = -1;
+      client._people().forEach(person => {
+        total += person.vote;
+        if (person.vote < lowest) {
+          lowest = person.vote;
+        }
+        if (person.vote > highest) {
+          highest = person.vote;
+        }
+      });
+
+      $('#average').html(total*1.0/client._people().length);
+      $('#lowest').html(lowest);
+      $('#highest').html(highest);
+
       $('.flippable').each(function(i, val) {
           setTimeout(function(){
               $(val).addClass('flipped');
