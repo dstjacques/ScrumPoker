@@ -17,13 +17,15 @@
     this._isNotEmbedded = this.__ko.observable(isNotEmbedded);
     this._subj = this.__ko.observable("");
     this._timer = this.__ko.observable("");
-    var interval, lastInterval;
+    this.__interval = null;
+    this.__lastInterval = null;
+
     this._subj.subscribe(function(nv){
       var seconds = 0;
-      if (lastInterval) {
-        window.clearInterval(lastInterval);
+      if (that.__lastInterval) {
+        window.clearInterval(that.__lastInterval);
       }
-      interval = window.setInterval(function() {
+      that.__interval = window.setInterval(function() {
         seconds++;
         var mins = Math.floor(seconds / 60);
         var secs = seconds - (mins * 60);
@@ -34,7 +36,7 @@
           that._timer(mins + ":" + secs);
         }
       }.bind(that), 1000);
-      lastInterval = interval;
+      that.__lastInterval = that.__interval;
       that._vote(null);
       that.update.call(that);
     });
@@ -56,6 +58,9 @@
     }, this);
     this._voteComplete.subscribe(function (nv) {
       if (nv) {
+        if (that.__lastInterval) {
+          window.clearInterval(that.__lastInterval);
+        }
         that.__pubsub.trigger('reveal');
       } 
     });
