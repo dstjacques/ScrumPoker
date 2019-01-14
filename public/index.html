@@ -23,10 +23,10 @@
     
     <div class="hero-unit">
       <h2 class="text-center">Planning Poker</h2>
-      <p class="pull-right">Logged in as <span data-bind="text: _name"></span>@<span data-bind="text: _room"></span></p>
-      <h4>User Story:</h3>
+      <p class="pull-right">Logged in as <span data-bind="text: _name"></span><span data-bind="visible: _isNotEmbedded">@<span data-bind="text: _room"></span></span></p>
+      <p>User Story:</p>
       <input type="text" style="width:500px" data-bind="value: _subj">
-      <p>Invite more people to this room: <code data-bind="text: window.location"></code>.</p>
+      <p data-bind="visible: _isNotEmbedded">Invite more people to this room: <code data-bind="text: window.location"></code>.</p>
     </div>
 
     <div class="alert">
@@ -83,7 +83,7 @@
   <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
   <script src="//ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
-  <script src="js/bootbox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script><!-- js/bootbox.min.js https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js -->
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/client.js"></script>
 

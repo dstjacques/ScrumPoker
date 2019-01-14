@@ -9,11 +9,12 @@
     this._people = this.__ko.observableArray([]);
   };
 
-  Client.prototype.init = function(name, room) {
+  Client.prototype.init = function(name, room, isNotEmbedded) {
     var that = this;
     
     this._name = this.__ko.observable(name);
     this._room = this.__ko.observable(room);
+    this._isNotEmbedded = this.__ko.observable(isNotEmbedded);
     this._subj = this.__ko.observable("");
     this._subj.subscribe(function(nv){
       that._vote(null);
@@ -122,16 +123,28 @@
     bootbox.prompt("What is your name?", function(n) {
       if (n) {
         name = n;
+
+        var isNotEmbedded = true;
+        try {
+          var frame = window.frameElement;
+          if (frame != null) {
+            isNotEmbedded = false;
+          }
+        }
+        catch(e) {
+          isNotEmbedded = false;
+        }
+        isNotEmbedded = false;
         if (!room) {
           bootbox.prompt("Choose a name for poker room", function(r) {
             if (r !== null) {
               room = r;
               window.location.hash = "#" + room;
-              client.init(name, room);
+              client.init(name, room, isNotEmbedded);
             }
           });
         } else { /*has room name*/
-          client.init(name, room); /*!DRY*/
+          client.init(name, room, isNotEmbedded); /*!DRY*/
         }
       }
     });
@@ -164,7 +177,7 @@
         }
       });
 
-      $('#average').html(total*1.0/client._people().length);
+      $('#average').html((total*1.0/client._people().length).toFixed(1));
       $('#lowest').html(lowest);
       $('#highest').html(highest);
 

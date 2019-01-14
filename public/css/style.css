@@ -10,6 +10,6 @@ body div.container div.box.person{position:relative;-webkit-perspective:800px;-m
 body div.container div.box.person div.flippable div.face.back{background:blue;-webkit-transform:rotateY(180deg);-moz-transform:rotateY(180deg);-o-transform:rotateY(180deg);transform:rotateY(180deg);background-color:orange;}body div.container div.box.person div.flippable div.face.back h1{color:black;text-shadow:2px 2px 2px #fff;}
 body div.container div.box.person div.flippable.flipped{-webkit-transform:translateX(-100%) rotateY(-180deg);-moz-transform:translateX(-100%) rotateY(-180deg);-o-transform:translateX(-100%) rotateY(-180deg);transform:translateX(-100%) rotateY(-180deg);}
 body footer{display:block;height:100px;color:#666;font-size:18px;background-color:#10327C;border-radius:5px;}body footer p.footer-note{padding-top:20px;}
-h3 {color:#000000}
-p {font-size:14px}
+h3, h4 {color:#000000}
+p {font-size:18px}
 ul {color:#000000}
