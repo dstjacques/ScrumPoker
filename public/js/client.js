@@ -16,7 +16,25 @@
     this._room = this.__ko.observable(room);
     this._isNotEmbedded = this.__ko.observable(isNotEmbedded);
     this._subj = this.__ko.observable("");
+    this._timer = this.__ko.observable("");
+    var interval, lastInterval;
     this._subj.subscribe(function(nv){
+      var seconds = 0;
+      if (lastInterval) {
+        window.clearInterval(lastInterval);
+      }
+      interval = window.setInterval(function() {
+        seconds++;
+        var mins = Math.floor(seconds / 60);
+        var secs = seconds - (mins * 60);
+        if (String.prototype.padStart) {
+          that._timer(mins.toString().padStart(2, "0") + ":" + secs.toString().padStart(2, "0"));
+        }
+        else {
+          that._timer(mins + ":" + secs);
+        }
+      }.bind(that), 1000);
+      lastInterval = interval;
       that._vote(null);
       that.update.call(that);
     });
