@@ -2,7 +2,7 @@
 @import url(//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap-responsive.min.css);
 @import url(//fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps);
 @import url(//fonts.googleapis.com/css?family=PT+Serif);
-body{padding-top:60px;font-family:'PT Serif';background-color:#EEF1F5;color:#FFFFFF;}body div.container div.hero-unit{padding-top:20px;padding-bottom:20px;background-color:#10327C;}
+body{padding-top:60px;font-family:'PT Serif';background-color:#FFFFFF;color:#FFFFFF;}body div.container div.hero-unit{padding-top:20px;padding-bottom:20px;background-color:#10327C;}
 body div.container a.brand{font-family:'Oleo Script Swash Caps';font-size:32px;}
 body div.container div.box{display:block;height:100px;border-radius:3px;}body div.container div.box.card{box-shadow:2px 2px #10327C;background-color:#1E51BF;cursor:pointer;}body div.container div.box.card h1{padding-top:25px;color:orange;text-shadow:2px 2px 2px #040404;}
 body div.container div.box.card.selected{background-color:orange;}body div.container div.box.card.selected h1{color:black;text-shadow:2px 2px 2px #FFFFFF;}
