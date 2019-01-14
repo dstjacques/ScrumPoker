@@ -183,19 +183,24 @@
 
     client.on('reveal', function(){
       var total = 0;
-      var lowest = 999;
-      var highest = -1;
+      var people = 0;
+      var lowest = NaN;
+      var highest = NaN;
       client._people().forEach(person => {
+        if (isNaN(parseInt(person.vote))) {
+          return;
+        }
         total += person.vote;
-        if (person.vote < lowest) {
+        people += 1;
+        if (isNaN(lowest) || person.vote < lowest) {
           lowest = person.vote;
         }
-        if (person.vote > highest) {
+        if (isNaN(highest) || person.vote > highest) {
           highest = person.vote;
         }
       });
 
-      $('#average').html((total*1.0/client._people().length).toFixed(1));
+      $('#average').html(people > 0 ? (total*1.0/people).toFixed(1) : "");
       $('#lowest').html(lowest);
       $('#highest').html(highest);
 
