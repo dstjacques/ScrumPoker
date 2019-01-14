@@ -5,7 +5,7 @@
     this.__ko = ko;
     this.__io = io;
     this.__pubsub = pubsub /*this will be used as event publisher/subscriber*/
-    this._cards = this.__ko.observableArray([0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100, 'C']);
+    this._cards = this.__ko.observableArray([0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?']);
     this._people = this.__ko.observableArray([]);
   };
 
